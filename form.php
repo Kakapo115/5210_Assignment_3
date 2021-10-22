@@ -13,11 +13,25 @@
   </head>
   <body class="container">
       
-      <!-- Menu Div -->
+  <!-- This is for the database connection -->
+  <?php include "connection.php"; ?>
+    
+    <!-- Menu Div -->
     <div class="row" id="header">
         <div class="col">
             <img src="images/logo.png" id="header_image" alt="SCP Logo">
             <a class="navbar-brand head-text" href="index.php" style="font-size: 40px;">SCP Foundation</a>
+            <ul class="nav">
+                <!-- Run PHP loop through db and display h1 here, and this will be our menu -->
+                <?php foreach($result as $link): ?>
+                    <li>
+                        <a href="index.php?link='<?php echo $link['scpNumber']; ?>'" class="nav-link head-links"><?php echo $link['scpNumber']; ?></a>
+                    </li>
+                <?php endforeach; ?>
+                <li class="nav-item active">
+                    <a href="form.php" class="nav-link head-links">Add A SCP Record</a>
+                </li>
+            </ul>
         </div>
     </div>
     
